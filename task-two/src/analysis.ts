@@ -13,14 +13,14 @@ async function analyseFiles(inputPath: string[], outputFile: string) {
   const domainExtractors = await domainExtractor(inputPath);
   const domainCounts = await domainCounter(inputPath);
 
-  let result: {} = {
+  const result: {} = {
     'Valid-Emails': domainExtractors.validEmails,
     totalEmailPassed: domainCounts.totalEmailPassed,
     totalValidEmails: domainCounts.totalValidEmails,
     categories: domainCounts.categories,
   };
-  let json: string = JSON.stringify(result, null, ' ');
-    let streamResult = fs.createWriteStream(outputFile)
+  const json: string = JSON.stringify(result, null, ' ');
+    const streamResult = fs.createWriteStream(outputFile)
     streamResult.write(json)
 }
 analyseFiles(

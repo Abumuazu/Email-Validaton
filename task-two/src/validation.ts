@@ -17,25 +17,25 @@ async function validateEmailAddresses(inputPath: string[], outputFile: string) {
   
   let combinedEmails = [];
 
-  for (let path of inputPath) {
-    let resolved = await csvtojson().fromFile(path);
-    console.log(resolved);
+  for (const path of inputPath) {
+    const resolved = await csvtojson().fromFile(path);
+    
     combinedEmails.push(resolved);
   }
-  console.log(combinedEmails);
+
   combinedEmails = combinedEmails.flat(1);
-  let correctEmailDomain: string[] = [];
-  for (let data of combinedEmails) {
-    let email = data.Emails;
-    email;
+  const correctEmailDomain: string[] = [];
+  for (const data of combinedEmails) {
+    const email = data.Emails;
+    
     const domains = email.split('@')[1];
-    console.log(domains);
+    
     dns.resolve(domains, 'MX', (error, addresses) => {
       if (error) {
         console.error(error)
        
       }else if (addresses && addresses.length > 0) {
-        console.log(addresses);
+        
         fs.appendFile(
           outputFile,
           email + "\n",
