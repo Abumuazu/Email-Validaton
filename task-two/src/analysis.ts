@@ -4,8 +4,30 @@
  * @param {string[]} inputPaths An array of csv files to read
  * @param {string} outputPath The path to output the analysis
  */
-function analyseFiles(inputPaths: string[], outputPath: string) {
-  console.log('Complete the implementation in src/analysis.ts');
+import validator from 'email-validator';
+import csvtojson from 'csvtojson';
+import fs from 'fs';
+import domainExtractor from './utils/DomainExtractor';
+import  domainCounter  from './utils/domainCounter';
+async function analyseFiles(inputPath: string[], outputFile: string) {
+  const domainExtractors = await domainExtractor(inputPath);
+  const domainCounts = await domainCounter(inputPath);
+
+  let result: {} = {
+    'Valid-Emails': domainExtractors.validEmails,
+    totalEmailPassed: domainCounts.totalEmailPassed,
+    totalValidEmails: domainCounts.totalValidEmails,
+    categories: domainCounts.categories,
+  };
+  let json: string = JSON.stringify(result, null, ' ');
+    let streamResult = fs.createWriteStream(outputFile)
+    streamResult.write(json)
 }
+analyseFiles(
+  [
+    './fixtures/inputs/medium-sample.csv'
+  ],
+  './fixtures/outputs/news.json',
+);
 
 export default analyseFiles;
