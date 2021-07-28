@@ -21,7 +21,7 @@ async function domainExtractor(inputPath: string[]) {
     email;
     console.log(validator.validate(email));
     const validEmail: boolean = validator.validate(email);
-    if (validEmail == true) {
+    if (validEmail === true) {
       const emailDomain: string = email.split('@')[1];
       correctEmailDomain.push(emailDomain);
     }

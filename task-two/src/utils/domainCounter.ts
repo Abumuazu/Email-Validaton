@@ -6,7 +6,7 @@ import csvtojson from 'csvtojson';
 import fs from 'fs';
 
 async function domainCounter(inputPath: string[]) {
-  let domainCount: { [data: string]: number } = {};
+  const domainCount: { [data: string]: number } = {};
 
   let combinedEmails = [];
 
@@ -18,7 +18,7 @@ async function domainCounter(inputPath: string[]) {
   combinedEmails = combinedEmails.flat(1);
   const correctDomain: string[] = [];
   combinedEmails.map((data) => {
-    if (validator.validate(data.Emails) == true) {
+    if (validator.validate(data.Emails) === true) {
       correctDomain.push(data.Emails.split('@')[1]);
     }
   });
