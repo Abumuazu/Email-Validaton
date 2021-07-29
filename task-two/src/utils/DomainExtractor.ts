@@ -2,23 +2,23 @@
  * Afuntion to Extract Domain
  */
 import validator from 'email-validator';
-import csvtojson from 'csvtojson';
 import fs from 'fs';
 
 async function domainExtractor(inputPath: string[]) {
-  let combinedEmails = [];
+  let arrayOfJson;
 
   for (const path of inputPath) {
-    const resolved = await csvtojson().fromFile(path);
-    console.log(resolved);
-    combinedEmails.push(resolved);
+    arrayOfJson = fs.createReadStream(path);
   }
-  combinedEmails = combinedEmails.flat(1);
+  let csv = ' ';
+  for await (const path of arrayOfJson as fs.ReadStream) {
+    csv += path;
+  }
+  const combinedEmails: string[] = csv.split('\n');
   combinedEmails;
   const correctEmailDomain: string[] = [];
   combinedEmails.map((data) => {
-    const email = data.Emails;
-    email;
+    const email = data;
     console.log(validator.validate(email));
     const validEmail: boolean = validator.validate(email);
     if (validEmail === true) {
@@ -34,4 +34,5 @@ async function domainExtractor(inputPath: string[]) {
     validEmails: validEmails,
   };
 }
+domainExtractor(['/Users/e/Desktop/DECAGON/week-4-node-008-Abumuazu/task-two/fixtures/outputs/small-sample.csv'])
 export default domainExtractor;
