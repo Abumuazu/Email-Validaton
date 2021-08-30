@@ -1,6 +1,8 @@
-# 1 JavaScript - FileTree Bug
+# Test your Javascript skills
 
-## Introduction
+# 1 - FileTree Bug
+
+## Description
 
 Here is a part of an application that creates a file tree data structure from JSON input. However, there are one or more bugs in this code. It seems that for some data sets this code creates an incorrect tree structure.
 

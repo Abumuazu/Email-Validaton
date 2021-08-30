@@ -1,14 +1,14 @@
 [
   {
-    "id": 7832454551,
-    "name": "usr",
-    "type": "DIRECTORY"
-  },
-  {
     "id": 7832454554,
     "name": "applications",
     "type": "DIRECTORY",
     "parentId": 7832454553
+  },
+  {
+    "id": 7832454551,
+    "name": "usr",
+    "type": "DIRECTORY"
   },
   {
     "id": 7832454555,

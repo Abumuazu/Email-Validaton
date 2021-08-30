@@ -1,4 +1,6 @@
-Dear Decadev,
+# Project - Email validation
+
+# Project Description
 
 We have a list of email addresses obtained from various channels for marketing and we're trying to determine the best channel to send these emails.
 
